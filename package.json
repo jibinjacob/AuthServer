@@ -1,0 +1,24 @@
+{
+  "name": "authserver",
+  "version": "1.0.0",
+  "description": "Server for authenticating and authorizing users",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "nodemon --ignore db.json"
+  },
+  "keywords": [
+    "Authenticate",
+    "Authourization",
+    "JWT"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
