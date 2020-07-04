@@ -2,21 +2,15 @@
   "users": [
     {
       "id": 1,
-      "username": "Sam",
-      "email": "sam@sam.com",
-      "password": "pass"
+      "username": "Jibin",
+      "email": "jibin@jibin.com",
+      "password": "$2a$10$Aq0IP3hrRvnWZC1rRZRtsOgM7bik5R6KVxqBIqkVNcwlRVaK2vbLu"
     },
     {
       "id": 2,
-      "username": "Jibin",
-      "email": "jibin@jibin.com",
-      "password": "pass"
-    },
-    {
-      "id": 3,
       "username": "Sam",
       "email": "sam@sam.com",
-      "password": "pass"
+      "password": "$2a$10$k3QVLmXggOScD2P40Of7WOx42Wr3Cmp78Sz4pmfs/gjeIF9PG5neS"
     }
   ]
 }
