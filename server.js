@@ -33,7 +33,25 @@ app.post('/users',(req,res) => {
             email: req.body.email,
             password: hash  } )
     .write()
-  res.status(200).send("New user registered "+req.body.username)
+  res.status(201).send("New user registered "+req.body.username)
+})
+
+/**
+ * User login
+ */
+app.post('/users/login',(req,res) => {
+
+  user = db.get('users')
+           .find({email: req.body.email})
+           .value()
+
+  if (user === undefined)
+    res.status(401).send("User not found")
+
+  if (!bcrypt.compareSync(req.body.password, user.password))
+    res.status(401).send("Username and password did not match")
+
+  res.status(200).send("User successfully logged in "+user.username)
 })
 
 app.listen(PORT, () => console.log(`Server started on port:${PORT}`)) 
