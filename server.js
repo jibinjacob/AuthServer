@@ -2,6 +2,9 @@ const express = require('express')
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+
 
 const adapter = new FileSync('db.json')
 const db = low(adapter)
@@ -39,19 +42,21 @@ app.post('/users',(req,res) => {
 /**
  * User login
  */
-app.post('/users/login',(req,res) => {
+app.post('/users/authenticate',(req,res) => {
 
   user = db.get('users')
            .find({email: req.body.email})
            .value()
 
   if (user === undefined)
-    res.status(401).send("User not found")
+    return res.status(401).send({message:"User not found"})
 
-  if (!bcrypt.compareSync(req.body.password, user.password))
-    res.status(401).send("Username and password did not match")
+  if (user && !bcrypt.compareSync(req.body.password, user.password))
+    return res.status(401).send({message:"Username and password did not match."})
 
-  res.status(200).send("User successfully logged in "+user.username)
+  token = jwt.sign(user,process.env.ACCESS_TOKEN)
+
+  return res.status(200).send({message:"User successfully logged in "+user.username, accesstoken: token})
 })
 
 app.listen(PORT, () => console.log(`Server started on port:${PORT}`)) 
