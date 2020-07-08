@@ -19,6 +19,10 @@ app.use(express.json())
 
 app.get('/',(req,res) => res.send("Hello world"))
 
+app.get('/posts',authenticateToken, (req,res) => {
+  res.send(req.user.username + " is authorized")
+})
+
 /**
  * Register new user
  */
@@ -40,7 +44,7 @@ app.post('/users',(req,res) => {
 })
 
 /**
- * User login
+ * User authentication
  */
 app.post('/users/authenticate',(req,res) => {
 
@@ -54,9 +58,25 @@ app.post('/users/authenticate',(req,res) => {
   if (user && !bcrypt.compareSync(req.body.password, user.password))
     return res.status(401).send({message:"Username and password did not match."})
 
-  token = jwt.sign(user,process.env.ACCESS_TOKEN)
+  token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
 
   return res.status(200).send({message:"User successfully logged in "+user.username, accesstoken: token})
-})
+}) 
+
+function authenticateToken(req,res,next){
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+
+  if(token == null) return res.status(401).send('User not authorized')
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if(err) return res.status(403).send({message:"Not authorized. Invalid access token."})
+    
+    req.user = user
+    next()
+  })
+}
+
+
 
 app.listen(PORT, () => console.log(`Server started on port:${PORT}`)) 

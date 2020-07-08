@@ -30,3 +30,7 @@ Content-Type: application/json
     "email":"sam@sam.com",
     "password":"pass" 
 }
+
+###
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJTYW0iLCJlbWFpbCI6InNhbUBzYW0uY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkR1BMYm1yd21LTTNxZXJDZlM1U1NRZW94eENmLkdPZFZOeXNpL0xHc0guYm83bFVSSlRBcHUiLCJpYXQiOjE1OTQyMzY1NDR9.SMsVibqsBR_OO6P-H9TSwoIY3mFedSlaP0j-RQpIwNo
