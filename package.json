@@ -4,7 +4,8 @@
   "description": "Server for authenticating and authorizing users",
   "main": "server.js",
   "scripts": {
-    "devStart": "nodemon --ignore db.json"
+    "devStart": "nodemon --ignore db.json",
+    "devStartAuth": "nodemon authServer.js --ignore db.json"
   },
   "keywords": [
     "Authenticate",

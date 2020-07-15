@@ -2,15 +2,15 @@
   "users": [
     {
       "id": 1,
-      "username": "Sam",
-      "email": "sam@sam.com",
-      "password": "$2a$10$GPLbmrwmKM3qerCfS5SSQeoxxCf.GOdVNysi/LGsH.bo7lURJTApu"
+      "username": "Jibin",
+      "email": "jibin@jibin.com",
+      "password": "$2a$10$911KE.Ohse9IVjfSjI8tBOt4W8/sBkA7YrATBi/QRMTrJp0.2w76C"
     },
     {
       "id": 2,
-      "username": "Jibin",
-      "email": "jibin@jibin.com",
-      "password": "$2a$10$QxaxqWEf7eKgDBP5OhZgG.RTEPuRFk6O8D6SmEsiT.7J29XTeEHrK"
+      "username": "Sam",
+      "email": "sam@sam.com",
+      "password": "$2a$10$sZMcqIYJA/BlMFbw9obagu3S830/EVcDdnEuOn6yav7mAPFMJuy2e"
     }
   ]
 }

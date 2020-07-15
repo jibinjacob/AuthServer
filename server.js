@@ -23,46 +23,6 @@ app.get('/posts',authenticateToken, (req,res) => {
   res.send(req.user.username + " is authorized")
 })
 
-/**
- * Register new user
- */
-app.post('/users',(req,res) => {
-    
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(req.body.password, salt);
-  id = db.get('users')
-    .size()
-    .value()
-
-  db.get('users')
-    .push({id : id+1,
-            username: req.body.username, 
-            email: req.body.email,
-            password: hash  } )
-    .write()
-  res.status(201).send("New user registered "+req.body.username)
-})
-
-/**
- * User authentication
- */
-app.post('/users/authenticate',(req,res) => {
-
-  user = db.get('users')
-           .find({email: req.body.email})
-           .value()
-
-  if (user === undefined)
-    return res.status(401).send({message:"User not found"})
-
-  if (user && !bcrypt.compareSync(req.body.password, user.password))
-    return res.status(401).send({message:"Username and password did not match."})
-
-  token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
-
-  return res.status(200).send({message:"User successfully logged in "+user.username, accesstoken: token})
-}) 
-
 function authenticateToken(req,res,next){
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
